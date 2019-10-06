@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title id="titleFishCount">0</title>
+    <link rel="shortcut icon" type="image/png" href="resources/fishingRod.png">
+<!-- Bootstrap CSS -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="javascript/user.js"></script>
+  <script src="javascript/fisherman.js"></script>
+  <script src="javascript/villager.js"></script>
+  <script src="javascript/main.js"></script>
+  <script src="https://kit.fontawesome.com/2c31090e3a.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script src="game.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  </head>
+
+  <body>
+
+      <div class="color-two">
+        <div class="container-fluid">
+          <div class="row" id="fishLabel">
+            <div class="col-lg-12 text-center">
+              <h4 class="tracker border-shade" id="fishCaught"><span id="fishCaughtValue">0</span> Fish <i class="fas fa-fish"></i></h4>
+              <h4 class="tracker border-shade" id="totalGold"><span id="totalGoldValue">0</span> Gold <i class="fas fa-coins"></i></h4>
+            </div>
+          </div>
+          
+          <div class ="row" id="fishButton">
+            <div class="col-lg-12 text-center">
+              <button onclick="catchFish()" class="btn btn-info border-shade" id="catchFish">Catch Fish</button>
+            </div>
+          </div>
+          <div id="errorBox" class="alert"><span id="error"></span></div>
+        </div>
+      </div>
+
+      <div class="color-three padding-top-bottom">
+        <div class="container-fluid">
+          <!--OUTER ROW-->
+          <div class="row">
+            <!--LEFT COLUMN-->
+            <div class="col-lg-6">
+              <!--INNER ROW TOP-->
+              <div class="row">
+                  <div class="col-lg-6">
+                      <div class="card" id="firstCard">
+                          <div class="card-body">
+                            <h5 class="card-title" id="fisherman">0 fisherman</h5>
+                            <p class="card-text">Each Fisherman produces 1 fish every 8 seconds</p>
+                            <button onclick="buyFisherman()" class="btn btn-primary" id="buyFishermanButton">Buy Fisherman</button>
+                            <p id="nextFishermanNote">Next Fisherman: <span id="costFishermanNote"></span> <i class="fas fa-coins"></i></p>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" id="villagers">0 villagers</h5>
+                            <p class="card-text">Each Villager produces 1 gold every 5 seconds</p>
+                            <button onclick="buyVillager()" class="btn btn-primary" id="buyVillagerButton">Buy Villagers</button>
+                            <p id="nextVillagerNote">Next Villager: <span id="costVillagerNote"></span> <i class="fas fa-fish"></i></p>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              <!--INNER ROW BOTTOM-->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <h4 class="text-center border-shade color-four" id="upgrades-title">Gear Shop</h4>
+                      <div class="list-group border-shade" id="upgrades">
+                          <!--Upgrade Item 1-->
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="">Rod of the Angler (Common Fishing Pole)</h5>
+                              <small>40 <i class="fas fa-coins"></i></small>
+                            </div>
+                            <p class="mb-1">Increases fisherman production 3% - 5%.</p>
+                          </a>
+                          <!--Upgrade Item 2-->
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">Anchovies (Common Bait)</h5>
+                              <small class="text-muted">40 <i class="fas fa-coins"></i></small>
+                            </div>
+                            <p class="mb-1">Increases the chance to catch common fish 0.5% - 1%.</p>
+                          </a>
+                          <!--Upgrade Item 3-->
+                          <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">Bucket Hat (Common Hat)</h5>
+                              <small class="text-muted">45 <i class="fas fa-coins"></i></small>
+                            </div>
+                            <p class="mb-1">Increases expedition success 1% - 3%. </p>
+                          </a>
+                        </div>
+                  </div>
+                </div>
+            </div>
+            <!--RIGHT COLUMN-->
+            <div class="container-fluid col-lg-6" id="game-container">
+                <div class="text-center" id="game-holder"></div>
+            </div>
+          </div><!--OUTER ROW-->
+              <h3 class="jumbotron text-center border-shade" id="expeditionBanner">Start An Expedition Today</h3>
+                <div class="container text-center">
+                    <div id="myProgress">
+                      <div id="myBar"></div>
+                    </div>
+                </div>
+                <div id="expeditionError"></div>
+                <div class="container text-center">
+                    <p id="lblBeginExpedition">Cost 1 fisherman and 10 Gold</p>
+                    <button onclick="startExpedition()" class="btn btn-primary border-shade">Begin Expedition</button>    
+                </div>
+        </div><!--container-->
+        
+      </div><!--color select-->
+          
+        
+        <!-- <p>------------------Special Fish (will be moved)----------------------</p>
+        <br>
+        <input type="radio" id="CatFishCommonFish" name="consumableFish"/><label id="numberOfCatFish"># of Cat Fish:</label><br><br>
+        <input type="radio" id="TroutCommonFish" name="consumableFish"/><label id="numberOfTroutFish"># of Trout Fish:</label><br><br>
+        <input type="radio"id="SalmonCommonFish" name="consumableFish"/><label id="numberOfSalmonFish"># of Salmon Fish:</label><br><br>
+        <input type="radio" id="BassCommonFish" name="consumableFish"/><label id="numberOfBassFish"># of Bass Fish:</label><br><br>
+        <input type="radio" id="TunaCommonFish" name="tunaFish"/> # of Tuna:<br><br> 
+        <button class="btn btn-primary" id="consumeFish" onclick="consumeFish()">Consume Fish</button>
+        <br> 
+        <p>------------------Special Fish (will be moved)----------------------</p> -->
+
+    <p class="text-center" id="copy">&copy; 2019 Steven Johnson, Marcus West, Donovan Linder </p>
+  </body>
+</html>

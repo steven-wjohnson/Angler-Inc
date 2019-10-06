@@ -1,0 +1,123 @@
+body{
+  background: #bccad6;
+}
+#myProgress {
+  width: 100%;
+  height: 30px;
+  background-color: #ddd;
+  margin-bottom: 1em;
+}
+
+#myBar {
+
+  background-color: #4CAF50;
+  width: 10px;
+  height: 30px;
+
+}
+#buyFishermanButton{
+  width: 50%;
+  word-wrap: none;
+}
+#buyVillagerButton{
+  width: 50%;
+  word-wrap: none;
+}
+#fishLabel {
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+
+#fishCaught{
+  background: #85add6;
+
+}
+#nextFishermanNote{
+  text-align: right;
+}
+#nextVillagerNote{
+  text-align: right;
+}
+
+#totalGold{
+  background: gold;
+}
+
+#errorBox{
+  height: 50px;
+  margin-bottom: 0;
+}
+
+#error{
+  color: red;
+  text-align: center;
+}
+
+#lblBeginExpedition{
+  color: white;
+}
+
+#expeditionBanner{
+  margin-top: 1em;
+}
+
+#upgrades{
+  width:100%;
+  box-shadow: 5px rgb(182, 182, 182);
+}
+
+.list-group{
+  max-height: 215px;
+  overflow-y: scroll;
+}
+
+#upgrades-title{
+  margin-bottom: 0;
+  margin-top: 1em;
+}
+
+.padding-top{
+  padding-top: 2em;
+}
+
+.padding-bottom{
+  padding-bottom: 2em;
+}
+
+.card{
+  box-shadow: -1px -1px 5px rgb(39, 39, 39);
+}
+
+.tracker{
+  padding: 0.5em 0.5em;
+  display: inline-block;
+  color: white;
+  width: 15%;
+}
+
+.border-shade{
+  border: 1px solid rgb(129, 129, 129);
+  border-radius: 3px;
+  box-shadow: 0 2px 5px 1px rgb(116, 116, 116);
+}
+
+.color-one{
+  background: #bccad6;
+}
+
+.color-two{
+  background: #8d9db6;
+}
+
+.color-three{
+  background: #667292;
+}
+
+.color-four{
+  background: #f1e3dd;
+}
+
+.padding-top-bottom{
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
